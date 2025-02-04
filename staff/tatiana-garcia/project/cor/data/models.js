@@ -1,6 +1,6 @@
-import { Schema, Types, model } from 'mongoose'
+import { Schema, Types, model } from 'mongoose';
 
-const { ObjectId } = Types
+const { ObjectId } = Types;
 
 const user = new Schema({
     name: {
@@ -49,7 +49,7 @@ const user = new Schema({
         type: [String]
     }
 
-})
+});
 
 const review = new Schema({
     author: {
@@ -75,12 +75,55 @@ const review = new Schema({
         required: true,
         default: Date.now
     }
-})
+});
 
-const User = model('User', user)
-const Review = model('Review', review)
+const chat = new Schema({
+    participants: [{
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    }],
+    messages: [{
+        type: ObjectId,
+        ref: 'Message'
+    }],
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
+});
+
+const message = new Schema({
+    author: {
+        type: ObjectId,
+        required: true,
+        ref: 'User'
+    },
+    text: {
+        type: String,
+        required: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    chat: {
+        type: ObjectId,
+        required: true,
+        ref: 'Chat'
+    }
+});
+
+const User = model('User', user);
+const Review = model('Review', review);
+const Chat = model('Chat', chat);
+const Message = model('Message', message);
 
 export {
     User,
-    Review
-}
+    Review,
+    Chat,
+    Message
+};

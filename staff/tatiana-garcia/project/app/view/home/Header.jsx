@@ -46,7 +46,7 @@ export default function Header() {
                         >
                             <Paragraph>{name}</Paragraph>
                         </Link>
-                        <Button><IoChatboxEllipsesOutline size={22} /></Button>
+                        {/* <Button><IoChatboxEllipsesOutline size={22} /></Button> */}
                     </>
                 ) : (
                     <Paragraph>Bienvenida/o!</Paragraph>
